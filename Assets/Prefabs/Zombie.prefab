@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a411c51e25894c74591a3c286669e2a1, type: 3}
-  m_Color: {r: 1, g: 0.9394393, b: 0.5707547, a: 1}
+  m_Color: {r: 0.09142043, g: 0.4528302, b: 0.108884804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -91,9 +91,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8156810670565717771}
-  - component: {fileID: 8156810670565717770}
+  - component: {fileID: 3293403848097429965}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8156810670565717770
+--- !u!114 &3293403848097429965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,8 +123,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8156810670565717768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f042fd96175561d42adc8d7d7ca67f79, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f3d0e6dddbc27744a7a1d30f65cca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentPos: {x: 0, y: 0}
   moveSpeed: 0.05
+  entityManager: {fileID: 0}
+  health: 1

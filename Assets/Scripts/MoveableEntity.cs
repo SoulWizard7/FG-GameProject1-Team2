@@ -9,15 +9,12 @@ public class MoveableEntity : MonoBehaviour
 
     private Coroutine activeCoroutine;
 
-    public virtual void Move(Vector2Int direction)
+    public virtual void Move(Vector2Int direction, bool restrictToDanceFloor)
     {
         Vector2Int newPos = currentPos + direction;
-
-        if (!GridManager.instance.IsTileAvailible(newPos))
-            return;
         
-
-        // TODO: Add check for obstacles/enemies on tile.
+        if (!GridManager.instance.IsTileAvailible(newPos, restrictToDanceFloor))
+            return;
 
         if (activeCoroutine != null)
             StopCoroutine(activeCoroutine);
@@ -28,7 +25,7 @@ public class MoveableEntity : MonoBehaviour
     public IEnumerator MoveToPos(Vector2Int pos)
     {
         currentPos = pos;
-        Vector2 targetPos = GridManager.instance.tiles[pos.x, pos.y].transform.position;
+        Vector2 targetPos = pos;
         
         float t = 0f;
 

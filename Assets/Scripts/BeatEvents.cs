@@ -14,13 +14,13 @@ public class BeatEvents : MonoBehaviour
         instance = this;
     }
 
-    public event Action beatTrigger;
+    public event Action<int> beatTrigger;
 
-    public void BeatTrig()
+    public void BeatTrig(int beatCount)
     {
         if (beatTrigger != null)
         {
-            beatTrigger();
+            beatTrigger(beatCount);
         }
     }
 

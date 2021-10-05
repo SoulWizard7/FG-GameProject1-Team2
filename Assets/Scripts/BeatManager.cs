@@ -61,7 +61,7 @@ public class BeatManager : MonoBehaviour
         if (_beatTime > currentBeat)
         {
             currentBeat++;
-            BeatEvents.instance.BeatTrig();
+            BeatEvents.instance.BeatTrig(currentBeat);
             //Debug.Log("current Beat counter : " + currentBeat);
         }
     }

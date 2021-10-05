@@ -23,7 +23,7 @@ public class PlayerMovement : MoveableEntity
                 // Player moved
                 if (_beatManager.playerCanInput)
                 {
-                    Move(inputMovement);
+                    Move(inputMovement, true);
                 }
                 else
                 {

@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour
         BeatEvents.instance.beatTrigger += ChangeColor;
     }
 
-    private void ChangeColor()
+    private void ChangeColor(int beatCount)
     {
         _sprite.material.color = BeatEvents.instance.danceFloorColors[Random.Range(0, BeatEvents.instance.danceFloorColors.Count)];
     }
