@@ -7,11 +7,11 @@ public class BeatEvents : MonoBehaviour
 {
     public List<Color> danceFloorColors;
     
-    public static BeatEvents current;
+    public static BeatEvents instance;
 
     private void Awake()
     {
-        current = this;
+        instance = this;
     }
 
     public event Action beatTrigger;

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public static GridManager instance;
+
     public int gridSizeX = 10;
     public int gridSizeY = 10;
     public GameObject tilePrefab;
@@ -17,6 +19,7 @@ public class GridManager : MonoBehaviour
     
     void Awake()
     {
+        instance = this;
         tiles = new Tile[gridSizeX, gridSizeY];
         SetupGrid();
         InsertPlayer();
@@ -48,5 +51,22 @@ public class GridManager : MonoBehaviour
         pm.currentPos = playerStartPosition;
         CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
         cameraFollow.player = player.transform;
+    }
+
+    public bool IsTileAvailible(Vector2Int tilePos)
+    {
+        if (tilePos.x < 0 || tilePos.x > GridManager.instance.gridSizeX - 1 || tilePos.y < 0 || tilePos.y > GridManager.instance.gridSizeY - 1)
+        {
+            // Position outside of grid
+            return false;
+        }
+        else if (tiles[tilePos.x, tilePos.y].isObstacle)
+        {
+            // Tile is obstacle
+            return false;
+        }
+        // TODO: Check for enemies occupying tile
+
+        return true;
     }
 }
