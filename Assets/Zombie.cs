@@ -9,7 +9,7 @@ public class Zombie : EnemyBase
         if (beatCount % 2 != 0)
             return;
 
-        Vector2Int dirToPlayer = entityManager.GetPlayerPos() - this.currentPos;
+        Vector2Int dirToPlayer = entityManager.GetPlayerPos() - GetRoundedPos();
         Vector2Int dirToPlayerClamped = new Vector2Int(Mathf.Clamp(dirToPlayer.x, -1, 1), Mathf.Clamp(dirToPlayer.y, -1, 1));
         if (Mathf.Abs(dirToPlayer.x) >= Mathf.Abs(dirToPlayer.y))
             dirToPlayerClamped.y = 0;

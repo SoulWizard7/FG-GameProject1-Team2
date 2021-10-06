@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class EntityManager : MonoBehaviour
 {
     public static EntityManager instance;
 
-    private List<EnemyBase> enemies = new List<EnemyBase>();
+    public List<EnemyBase> enemies = new List<EnemyBase>();
     private PlayerMovement player;
     
     public GameObject playerPrefab;
@@ -31,7 +32,6 @@ public class EntityManager : MonoBehaviour
     private void SpawnPlayer()
     {
         player = Instantiate(playerPrefab, new Vector2(playerStartPosition.x, playerStartPosition.y), Quaternion.identity).GetComponent<PlayerMovement>();
-        player.currentPos = playerStartPosition;
         CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
         cameraFollow.player = player.transform;
     }
@@ -40,29 +40,26 @@ public class EntityManager : MonoBehaviour
     {
         // Randomize what side to spawn on
         int side = Random.Range(0, 4);
-        // Randomize what tile along that side to spawn on
-        int spawnTile = Random.Range(0, GridManager.instance.gridSizeX);
-
+        
         Vector2Int spawnPos = Vector2Int.zero;
 
         switch (side)
         {
             case 0: // Top
-                spawnPos = new Vector2Int(spawnTile, -enemySpawnOffset);
+                spawnPos = new Vector2Int(Random.Range(0, GridManager.instance.gridSizeX), -enemySpawnOffset);
                 break;
             case 1: // Right
-                spawnPos = new Vector2Int(GridManager.instance.gridSizeX + enemySpawnOffset, spawnTile);
+                spawnPos = new Vector2Int(GridManager.instance.gridSizeX - 1 + enemySpawnOffset, Random.Range(0, GridManager.instance.gridSizeY));
                 break;
             case 2: // Bottom
-                spawnPos = new Vector2Int(spawnTile, GridManager.instance.gridSizeY + enemySpawnOffset);
+                spawnPos = new Vector2Int(Random.Range(0, GridManager.instance.gridSizeX), GridManager.instance.gridSizeY - 1 + enemySpawnOffset);
                 break;
             case 3: // Left
-                spawnPos = new Vector2Int(-enemySpawnOffset, spawnTile);
+                spawnPos = new Vector2Int(-enemySpawnOffset, Random.Range(0, GridManager.instance.gridSizeY));
                 break;
         }
 
         EnemyBase enemy = Instantiate(enemyPrefab, (Vector2)spawnPos, Quaternion.identity).GetComponent<EnemyBase>();
-        enemy.currentPos = spawnPos;
         enemy.entityManager = this;
         enemies.Add(enemy);
     }
@@ -77,6 +74,6 @@ public class EntityManager : MonoBehaviour
 
     public Vector2Int GetPlayerPos()
     {
-        return player.currentPos;
+        return player.GetRoundedPos();
     }
 }

@@ -50,55 +50,7 @@ public class PlayerMovement : MoveableEntity
 
     void ShootLazer()
     {
-        Vector2Int directionToShoot = (entityLastPosition + (currentPos - entityLastPosition) * 2) - currentPos;
-        
-        //Debug.Log(directionToShoot);
-
-        for (int i = 1; i < 10; i++)
-        {
-            Vector2Int nextTileToCheck = new Vector2Int(currentPos.x + (directionToShoot.x * i), currentPos.y + (directionToShoot.y * i));
-            
-            if (nextTileToCheck.x >= 0 && nextTileToCheck.x <= GridManager.instance.gridSizeX - 1 && 
-                nextTileToCheck.y >= 0 && nextTileToCheck.y <= GridManager.instance.gridSizeY - 1)
-            {
-                Tile tile = GridManager.instance.tiles[nextTileToCheck.x, nextTileToCheck.y];
-                
-                if (tile.hasEnemy)
-                {
-                    LazerHitsEnemy(tile);
-                    break;
-                }
-                else
-                {
-                    //Debug.Log("tiles have NO enemies");
-                }
-            }
-            else
-            {
-                Vector2Int dir = new Vector2Int(directionToShoot.x * 20, directionToShoot.y * 20);
-                LazerFiresWide(dir);
-                break;
-            }
-        }
-    }
-
-    void LazerHitsEnemy(Tile tile)
-    {
-        GameObject lazer = Instantiate(lazerPrefab, transform.position, Quaternion.identity);
-        LazerBullet lazerBullet = lazer.GetComponent<LazerBullet>();
-        lazerBullet.target = new Vector2(tile.tilePos.x, tile.tilePos.y);
-        
-        tile.currentEntity.TakeDamage(1);
-
-        Destroy(lazer, 0.1f);
-    }
-
-    void LazerFiresWide(Vector2Int direction)
-    {
-        GameObject lazer = Instantiate(lazerPrefab, transform.position, Quaternion.identity);
-        LazerBullet lazerBullet = lazer.GetComponent<LazerBullet>();
-        lazerBullet.target = new Vector2(direction.x + currentPos.x, direction.y + currentPos.y);
-        
-        Destroy(lazer, 0.5f);
+        LazerBullet lazer =  Instantiate(lazerPrefab, transform.position, Quaternion.identity).GetComponent<LazerBullet>();
+        lazer.direction = facingDir;
     }
 }
