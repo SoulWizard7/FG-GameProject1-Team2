@@ -4,7 +4,10 @@ public class Tile : MonoBehaviour
     public Vector2Int tilePos;
     public bool isObstacle;
     private SpriteRenderer _sprite;
+    public bool hasEnemy;
 
+    public EnemyBase currentEntity;
+    
     private void Start()
     {
         _sprite = GetComponent<SpriteRenderer>();

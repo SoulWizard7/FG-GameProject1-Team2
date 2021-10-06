@@ -128,3 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPos: {x: 0, y: 0}
   moveSpeed: 0.05
+  entityLastPosition: {x: 0, y: 0}
+  lazerPrefab: {fileID: 5407742686685964253, guid: e5d6ff1257d306e439e4fdedd9401206, type: 3}
+  lazerSpeed: 0.12
