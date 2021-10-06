@@ -20,7 +20,7 @@ public class BeatManager : MonoBehaviour
     //public bool playerDidInputThisBeat;
 
 
-    private AudioSource song;
+    [NonSerialized]public AudioSource song;
 
     private void Start()
     {
