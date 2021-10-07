@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBase : MoveableEntity
 {
-    public EntityManager entityManager;
+    [NonSerialized] public EntityManager entityManager;
     public int beatsUntilMove;
+    // firstBeat is to allow enemies to offset the beat count to when they were spawned so they stay in the same part of the animation cycle
+    protected int firstBeat = -1;
 
     void Start()
     {
@@ -14,19 +17,24 @@ public class EnemyBase : MoveableEntity
 
     protected virtual void OnBeat(int beatCount)
     {
-        // This should probably be overridden by child classes but here is a basic functionality for moving towards player
+        // Implemented basic move function here so enemies can call base.OnBeat() in their own overrides for basic movement if they want it.
 
-        Vector2Int dirToPlayer = entityManager.GetPlayerPos() - GetRoundedPos();
-        Vector2Int dirToPlayerClamped = new Vector2Int(Mathf.Clamp(dirToPlayer.x, -1, 1), Mathf.Clamp(dirToPlayer.y, -1, 1));
-        if (Mathf.Abs(dirToPlayer.x) >= Mathf.Abs(dirToPlayer.y))
-            dirToPlayerClamped.y = 0;
-        else
-            dirToPlayerClamped.x = 0;
+        if (firstBeat == -1)
+            firstBeat = beatCount;
 
-        Move(dirToPlayerClamped, false);
+        if ((beatCount - firstBeat) % beatsUntilMove == 0)
+        {
+            Vector2Int dirToPlayer = entityManager.GetPlayerPos() - GetRoundedPos();
+            Vector2Int dirToPlayerClamped = new Vector2Int(Mathf.Clamp(dirToPlayer.x, -1, 1), Mathf.Clamp(dirToPlayer.y, -1, 1));
+            if (Mathf.Abs(dirToPlayer.x) >= Mathf.Abs(dirToPlayer.y))
+                dirToPlayerClamped.y = 0;
+            else
+                dirToPlayerClamped.x = 0;
+
+            Move(dirToPlayerClamped, false);
+        }
     }
     
-    // To anton: Was not able to refactor this into MovableEntity so I just made it into an override for some reason.
     public override void TakeDamage(int damage)
     {
         health -= damage;
@@ -38,6 +46,4 @@ public class EnemyBase : MoveableEntity
             Destroy(gameObject, 0.1f);
         }
     }
-
-    
 }

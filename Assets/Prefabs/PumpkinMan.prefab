@@ -129,8 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.05
-  entityManager: {fileID: 0}
-  beatsUntilMove: 3
+  beatsUntilMove: 7
 --- !u!95 &4472658131809760976
 Animator:
   serializedVersion: 3

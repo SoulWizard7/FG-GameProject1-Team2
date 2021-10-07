@@ -53,4 +53,14 @@ public class PlayerMovement : MoveableEntity
         LazerBullet lazer =  Instantiate(lazerPrefab, transform.position, Quaternion.identity).GetComponent<LazerBullet>();
         lazer.direction = facingDir;
     }
+
+    public override void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            // TODO: implement "lose" functionalty here
+        }
+    }
 }

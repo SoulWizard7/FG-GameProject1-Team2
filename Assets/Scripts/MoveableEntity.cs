@@ -72,14 +72,7 @@ public class MoveableEntity : MonoBehaviour
     {
         return new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
     }
-    
-    
-    public virtual void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            
-        }
-    }
+
+
+    public virtual void TakeDamage(int damage) { }
 }

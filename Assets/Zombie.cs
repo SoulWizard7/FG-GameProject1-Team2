@@ -14,19 +14,10 @@ public class Zombie : EnemyBase
 
     protected override void OnBeat(int beatCount)
     {
+        base.OnBeat(beatCount);
         
-        if (beatCount % beatsUntilMove != 0)
-            return;
-        
-        _animator.SetTrigger(AnimChangeTrigger);
-
-        Vector2Int dirToPlayer = entityManager.GetPlayerPos() - GetRoundedPos();
-        Vector2Int dirToPlayerClamped = new Vector2Int(Mathf.Clamp(dirToPlayer.x, -1, 1), Mathf.Clamp(dirToPlayer.y, -1, 1));
-        if (Mathf.Abs(dirToPlayer.x) >= Mathf.Abs(dirToPlayer.y))
-            dirToPlayerClamped.y = 0;
-        else
-            dirToPlayerClamped.x = 0;
-
-        Move(dirToPlayerClamped, false);
+        // Change animation when moving and then change back the beat after moving
+        if((beatCount - firstBeat) % beatsUntilMove == 0 || beatCount % beatsUntilMove == 1)
+            _animator.SetTrigger(AnimChangeTrigger);
     }
 }

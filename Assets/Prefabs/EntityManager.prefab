@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5977a7dfedfa9c47b09ce074fd1349f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies: []
   playerPrefab: {fileID: 8156810670565717768, guid: 3a878b798d21ec14098fc2e911560034, type: 3}
   playerStartPosition: {x: 4, y: 4}
   zombiePrefab: {fileID: 8156810670565717768, guid: 97b978d056cb10240a14e2f22ea341dc, type: 3}
+  pumpkinManPrefab: {fileID: 8156810670565717768, guid: 41317794662173e4c942df6b4f2ba176, type: 3}
   enemySpawnOffset: 3

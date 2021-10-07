@@ -14,6 +14,7 @@ public class EntityManager : MonoBehaviour
     public Vector2Int playerStartPosition = new Vector2Int(4, 4);
 
     public GameObject zombiePrefab;
+    public GameObject pumpkinManPrefab;
 
     // Number of tiles away from dance floor enemies spawn.
     public int enemySpawnOffset = 3;
@@ -69,6 +70,10 @@ public class EntityManager : MonoBehaviour
         if (beatCount % 8 == 0)
         {
             SpawnEnemy(zombiePrefab);
+        }
+        else if (beatCount % 12 == 0)
+        {
+            SpawnEnemy(pumpkinManPrefab);
         }
     }
 
