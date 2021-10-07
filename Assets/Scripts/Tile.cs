@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
         
         BeatEvents.instance.beatTrigger += ChangeColor;
+        BeatEvents.instance.beatTriggerEnvironment += ChangeColor;
     }
 
     private void ChangeColor(int beatCount)

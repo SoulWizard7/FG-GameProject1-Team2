@@ -11,6 +11,12 @@ public class MoveableEntity : MonoBehaviour
 
     protected Vector2Int facingDir;
 
+    protected Animator _animator;
+    
+    protected int health = 1;
+
+    private bool _isFacingRight;
+
     public virtual void Move(Vector2Int direction, bool restrictToDanceFloor)
     {
         facingDir = new Vector2Int(direction.x, direction.y); // Copy x and y variables separately to avoid creating a reference
@@ -26,6 +32,24 @@ public class MoveableEntity : MonoBehaviour
         
         activeCoroutine = StartCoroutine(MoveToPos(newPos));
 
+        if (direction.x > 0 && !_isFacingRight)
+        {
+            _isFacingRight = true;
+            Flip();
+        }
+        
+        if (direction.x < 0 && _isFacingRight)
+        {
+            _isFacingRight = false;
+            Flip();
+        }
+    }
+
+    void Flip()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     public virtual IEnumerator MoveToPos(Vector2Int pos)
@@ -47,5 +71,15 @@ public class MoveableEntity : MonoBehaviour
     public Vector2Int GetRoundedPos()
     {
         return new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+    }
+    
+    
+    public virtual void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            
+        }
     }
 }

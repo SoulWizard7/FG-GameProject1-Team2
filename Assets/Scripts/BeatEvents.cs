@@ -23,6 +23,14 @@ public class BeatEvents : MonoBehaviour
         }
     }
     
-    
+    public event Action<int> beatTriggerEnvironment;
 
+    public void BeatTrigEnvironment(int beatCount)
+    {
+        if (beatTriggerEnvironment != null)
+        {
+            beatTriggerEnvironment(beatCount);
+        }
+    }
+    
 }

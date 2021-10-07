@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBase : MoveableEntity
 {
     public EntityManager entityManager;
-    public int health = 1;
+    public int beatsUntilMove;
 
     void Start()
     {
@@ -25,9 +25,9 @@ public class EnemyBase : MoveableEntity
 
         Move(dirToPlayerClamped, false);
     }
-
-    // Should this functionality be in MoveableEntity script in case player should use this for health aswell?
-    public void TakeDamage(int damage)
+    
+    // To anton: Was not able to refactor this into MovableEntity so I just made it into an override for some reason.
+    public override void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
@@ -38,4 +38,6 @@ public class EnemyBase : MoveableEntity
             Destroy(gameObject, 0.1f);
         }
     }
+
+    
 }

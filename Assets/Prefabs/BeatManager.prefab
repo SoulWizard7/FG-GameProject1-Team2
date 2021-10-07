@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 100
-  songStartOffset: -0.17
+  songStartOffset: -0.16
   currentBeat: 0
-  offsetMilliSeconds: 0.11
+  offsetMilliSeconds: 0.125
   startTheBeat: 0
   playerCanInput: 0
+  countdownBeat: 5
+  countdownText: {fileID: 0}
 --- !u!82 &7215621353436972918
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60,7 +62,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2974683ee215f8a44a61434563403511, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7a10dd149d8509148a9812b1c3a73f36, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.324
   m_Pitch: 1

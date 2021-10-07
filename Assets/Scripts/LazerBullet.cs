@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LazerBullet : MoveableEntity
 {
+    // Had a problem to figure out what speed and lazer speed did in the inspector, wanted to try slow down lazer
+    // but didn´t know what values to change.
+    
     public int range = 10;
     [Range(0, 0.2f)] public float lazerSpeed = 0.1f;
     // The maximum range the center of the bullet needs to be from the center of an enemy for it to be considered a hit

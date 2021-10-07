@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BeatManager : MonoBehaviour
@@ -17,6 +18,12 @@ public class BeatManager : MonoBehaviour
     public bool startTheBeat = false;
     private bool _playSong = false;
     public bool playerCanInput;
+
+    // COUNTDOWN VARIABLES AND REFERENCES 
+    private bool _countdown = true;
+    public int countdownBeat = 4;
+    public TextMeshProUGUI countdownText;
+    
     //public bool playerDidInputThisBeat;
 
 
@@ -33,7 +40,7 @@ public class BeatManager : MonoBehaviour
     private void Update()
     {
         if (Input.anyKey) { startTheBeat = true; }
-        
+
         if (!startTheBeat)
         {
             _musicStart = Time.time - songStartOffset;
@@ -44,10 +51,32 @@ public class BeatManager : MonoBehaviour
             _playSong = true;
             song.Play();
         }
-        
         Beat();
         CurrentBeatCounter();
+
+        if (_countdown) return;
+        
         BeatWithInputOffset();
+    }
+
+    void CountDown()
+    {
+        countdownBeat--;
+        BeatEvents.instance.BeatTrigEnvironment(currentBeat);
+
+        if (countdownBeat == 1)
+        {
+            countdownText.SetText("GO!");
+        }
+        else if (countdownBeat <= 0)
+        {
+            countdownText.SetText("");
+            _countdown = false;
+        }
+        else
+        {
+            countdownText.SetText(countdownBeat.ToString());
+        }
     }
 
     void Beat()
@@ -61,8 +90,14 @@ public class BeatManager : MonoBehaviour
         if (_beatTime > currentBeat)
         {
             currentBeat++;
+
+            if (_countdown)
+            {
+                CountDown();
+                return;
+            }
+
             BeatEvents.instance.BeatTrig(currentBeat);
-            //Debug.Log("current Beat counter : " + currentBeat);
         }
     }
 
