@@ -1,0 +1,58 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class VisualIndicator : MonoBehaviour
+{
+    [NonSerialized] public Transform _startSpot;
+    [NonSerialized] public BeatManager _bm;
+    [NonSerialized] public VisualBeatTimer _visualBeatTimer;
+    
+    private float _beatNr;
+    private bool _onBeat;
+    private bool _success;
+    
+    void Start()
+    {
+        BeatEvents.instance.succesfulInputOnBeat += InputOnBeat;
+        _beatNr = _bm.currentBeat;
+    }
+    
+    private void Update()
+    {
+        float t = _bm._beatTime - _beatNr;
+        transform.position = Vector2.LerpUnclamped(_startSpot.position, _visualBeatTimer.transform.position, t/2);
+    }
+    
+    void InputOnBeat(int something)
+    {
+        if (_onBeat)
+        {
+            GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.indicatorSprites[1];
+            GetComponent<SpriteRenderer>().color = Color.green; //remove once we got the right sprites
+            _success = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            _onBeat = true;
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            _onBeat = false;
+            if (!_success)
+            {
+                GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.indicatorSprites[2];
+                GetComponent<SpriteRenderer>().color = Color.red; //remove once we got the right sprites
+            }
+        }
+    }
+}

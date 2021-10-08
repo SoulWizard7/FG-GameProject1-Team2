@@ -7,7 +7,7 @@ using UnityEngine;
 public class BeatManager : MonoBehaviour
 {
     private float _musicStart;
-    private float _beatTime;
+    [NonSerialized] public float _beatTime;
     public float bpm = 128;
     private float _bps;
     public float songStartOffset;
@@ -96,7 +96,7 @@ public class BeatManager : MonoBehaviour
                 CountDown();
                 return;
             }
-
+            BeatEvents.instance.BeatTrigEnvironment(currentBeat);
             BeatEvents.instance.BeatTrig(currentBeat);
         }
     }
@@ -111,5 +111,10 @@ public class BeatManager : MonoBehaviour
         {
             playerCanInput = false;
         }
+    }
+
+    float GetBPS()
+    {
+        return _bps;
     }
 }

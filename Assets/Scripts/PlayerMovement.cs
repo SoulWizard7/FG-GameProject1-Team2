@@ -26,6 +26,7 @@ public class PlayerMovement : MoveableEntity
                 if (_beatManager.playerCanInput)
                 {
                     Move(inputMovement, true);
+                    BeatEvents.instance.SuccesfulInput(health);
                 }
                 else
                 {
@@ -39,7 +40,8 @@ public class PlayerMovement : MoveableEntity
             if (_beatManager.playerCanInput)
             {
                 Debug.Log("Input FIRE! was on beat!");
-                ShootLazer();    
+                ShootLazer();
+                BeatEvents.instance.SuccesfulInput(health);
             }
             else
             {

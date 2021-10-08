@@ -32,5 +32,16 @@ public class BeatEvents : MonoBehaviour
             beatTriggerEnvironment(beatCount);
         }
     }
-    
+
+    public event Action<int> succesfulInputOnBeat;
+
+    public void SuccesfulInput(int input)
+    {
+        if (succesfulInputOnBeat != null)
+        {
+            succesfulInputOnBeat(input);
+        }
+        
+    }
+
 }

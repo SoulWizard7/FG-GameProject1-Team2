@@ -9,7 +9,7 @@ public class Tile : MonoBehaviour
     {
         _sprite = GetComponent<SpriteRenderer>();
         
-        BeatEvents.instance.beatTrigger += ChangeColor;
+        //BeatEvents.instance.beatTrigger += ChangeColor;
         BeatEvents.instance.beatTriggerEnvironment += ChangeColor;
     }
 
