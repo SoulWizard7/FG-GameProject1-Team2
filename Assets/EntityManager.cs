@@ -81,4 +81,9 @@ public class EntityManager : MonoBehaviour
     {
         return player.GetRoundedPos();
     }
+
+    public void DamagePlayer(int damage)
+    {
+        player.TakeDamage(damage);
+    }
 }

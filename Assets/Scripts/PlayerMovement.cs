@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MoveableEntity
 {
@@ -60,7 +61,8 @@ public class PlayerMovement : MoveableEntity
 
         if (health <= 0)
         {
-            // TODO: implement "lose" functionalty here
+            // TODO: implement "lose" functionalty here. Temporarily just going back to menu.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 }

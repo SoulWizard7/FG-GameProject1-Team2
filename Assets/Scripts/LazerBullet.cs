@@ -17,20 +17,21 @@ public class LazerBullet : MoveableEntity
     void Start()
     {
         Move(direction * range, false);
-        Destroy(gameObject, lazerSpeed);
+        Destroy(gameObject, moveSpeed);
     }
 
     // Override coroutine to also check for damage to enemies while moving
     public override IEnumerator MoveToPos(Vector2Int pos)
     {
+        Vector3 startPos = transform.position;
         float t = 0f;
 
         while (t < 1f)
         {
-            transform.position = Vector2.Lerp(transform.position, pos, t);
+            transform.position = Vector2.Lerp(startPos, pos, t);
             HandleCollisions();
             yield return 0;
-            t += Time.deltaTime;
+            t += (Time.deltaTime / moveSpeed);
         }
 
         transform.position = (Vector2)pos;

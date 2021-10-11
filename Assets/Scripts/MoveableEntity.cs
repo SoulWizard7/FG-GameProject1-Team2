@@ -9,11 +9,9 @@ public class MoveableEntity : MonoBehaviour
 
     protected Coroutine activeCoroutine;
 
-    protected Vector2Int facingDir;
-
-    protected Animator _animator;
+    protected Vector2Int facingDir = Vector2Int.left;
     
-    protected int health = 1;
+    public int health = 1;
 
     private bool _isFacingRight;
 
@@ -54,13 +52,14 @@ public class MoveableEntity : MonoBehaviour
 
     public virtual IEnumerator MoveToPos(Vector2Int pos)
     {
+        Vector3 startPos = transform.position;
         float t = 0f;
 
         while (t < 1f)
         {
-            transform.position = Vector2.Lerp(transform.position, pos, t);
+            transform.position = Vector2.Lerp(startPos, pos, t);
             yield return 0;
-            t += Time.deltaTime;
+            t += (Time.deltaTime / moveSpeed);
         }
 
         transform.position = (Vector2)pos;
