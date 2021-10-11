@@ -47,7 +47,7 @@ MonoBehaviour:
   bpm: 100
   songStartOffset: -0.16
   currentBeat: 0
-  offsetMilliSeconds: 0.125
+  offsetMilliSeconds: 0.15
   startTheBeat: 0
   playerCanInput: 0
   countdownBeat: 5

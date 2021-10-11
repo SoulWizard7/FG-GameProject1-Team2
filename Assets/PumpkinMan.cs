@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class PumpkinMan : EnemyBase
 {
-    private static readonly int idleTrigger = Animator.StringToHash("PumpkinManIdle");
-    private static readonly int danceTrigger = Animator.StringToHash("PumpkinManDance");
-    private static readonly int attackTrigger = Animator.StringToHash("PumpkinManAttack");
+    private static readonly int animState = Animator.StringToHash("AnimState");
 
-    private void Awake()
+    private enum AnimState
     {
-        _animator = GetComponent<Animator>();
+        Idle = 0,
+        Dance = 1,
+        Attack = 2
     }
+
+    public GameObject pumpkinBombPrefab;
 
     protected override void OnBeat(int beatCount)
     {
@@ -23,19 +25,16 @@ public class PumpkinMan : EnemyBase
         switch (beatInSequence)
         {
             case 0:
-                // Cycle anmation to dance since this is when we move
-                _animator.ResetTrigger(attackTrigger);
-                _animator.SetTrigger(idleTrigger);
+                _animator.SetInteger(animState, (int)AnimState.Dance);
+                if (beatCount - firstBeat != 0)
+                {
+                    // Throw a bomb at end of throwing animation as long as this is not the first beat the enemy is spawned.
+                    Instantiate(pumpkinBombPrefab, transform.position, Quaternion.identity);
+                }
                 break;
-            case 1:
-                // Cycle animation to dance the beat after we moved
-                _animator.ResetTrigger(idleTrigger);
-                _animator.SetTrigger(danceTrigger);
-                break;
-            case 3:
-                // Cycle animation to attack after dancing two beats
-                _animator.ResetTrigger(danceTrigger);
-                _animator.SetTrigger(attackTrigger);
+            case 4:
+                // Cycle animation to attack after dancing four beats
+                _animator.SetInteger(animState, (int)AnimState.Attack);
                 break;
         }
     }
