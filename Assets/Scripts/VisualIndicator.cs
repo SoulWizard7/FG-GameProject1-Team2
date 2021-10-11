@@ -12,7 +12,7 @@ public class VisualIndicator : MonoBehaviour
     private float _beatNr;
     private bool _onBeat;
     private bool _success;
-    
+
     void Start()
     {
         BeatEvents.instance.succesfulInputOnBeat += InputOnBeat;
@@ -29,8 +29,8 @@ public class VisualIndicator : MonoBehaviour
     {
         if (_onBeat)
         {
-            GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.indicatorSprites[1];
-            GetComponent<SpriteRenderer>().color = Color.green; //remove once we got the right sprites
+            //GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.ringColors[0];
+            GetComponent<SpriteRenderer>().color = _visualBeatTimer.ringColors[0]; //remove once we got the right sprites
             _success = true;
         }
     }
@@ -50,8 +50,8 @@ public class VisualIndicator : MonoBehaviour
             _onBeat = false;
             if (!_success)
             {
-                GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.indicatorSprites[2];
-                GetComponent<SpriteRenderer>().color = Color.red; //remove once we got the right sprites
+                //GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.indicatorSprites[2];
+                GetComponent<SpriteRenderer>().color = _visualBeatTimer.ringColors[1]; //remove once we got the right sprites
             }
         }
     }

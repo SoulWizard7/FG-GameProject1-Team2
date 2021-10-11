@@ -38,4 +38,14 @@ public class PumpkinMan : EnemyBase
                 break;
         }
     }
+    
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (health <= 0)
+        {
+            _audioEffects.PlayPumpkinDeath();
+        }
+    }
+    
 }

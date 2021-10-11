@@ -64,11 +64,11 @@ public class BeatManager : MonoBehaviour
         countdownBeat--;
         BeatEvents.instance.BeatTrigEnvironment(currentBeat);
 
-        if (countdownBeat == 1)
+        if (countdownBeat == 0)
         {
             countdownText.SetText("GO!");
         }
-        else if (countdownBeat <= 0)
+        else if (countdownBeat <= -1)
         {
             countdownText.SetText("");
             _countdown = false;

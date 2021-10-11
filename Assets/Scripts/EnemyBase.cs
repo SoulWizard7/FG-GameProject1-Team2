@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyBase : MoveableEntity
 {
@@ -44,6 +45,8 @@ public class EnemyBase : MoveableEntity
         {
             BeatEvents.instance.beatTrigger -= OnBeat;
             EntityManager.instance.enemies.Remove(this);
+            
+            //_audioEffects.PlayZombieDeath();
 
             Destroy(gameObject, 0.1f);
         }

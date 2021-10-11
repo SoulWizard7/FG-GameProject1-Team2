@@ -15,6 +15,13 @@ public class MoveableEntity : MonoBehaviour
 
     private bool _isFacingRight;
 
+    protected AudioEffects _audioEffects;
+
+    private void Awake()
+    {
+        _audioEffects = GameObject.Find("SoundEffects").GetComponent<AudioEffects>();
+    }
+
     public virtual void Move(Vector2Int direction, bool restrictToDanceFloor)
     {
         facingDir = new Vector2Int(direction.x, direction.y); // Copy x and y variables separately to avoid creating a reference
