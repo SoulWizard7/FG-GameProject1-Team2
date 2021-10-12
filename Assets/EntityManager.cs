@@ -77,13 +77,11 @@ public class EntityManager : MonoBehaviour
         {
             SpawnEnemy(pumpkinManPrefab);
         }
-        else if (beatCount % 111 == 0)
+        else if (beatCount % 18 == 0)
         {
             int x = Random.Range(-4, 5);
             int y = Random.Range(-4, 5);
-            HealthPickup hp = Instantiate(healthPickupPrefab, new Vector2(playerStartPosition.x + x, playerStartPosition.y + y),
-                Quaternion.identity).GetComponent<HealthPickup>();
-            hp.player = player;
+            Instantiate(healthPickupPrefab, new Vector2(playerStartPosition.x + x, playerStartPosition.y + y), Quaternion.identity);
         }
     }
 

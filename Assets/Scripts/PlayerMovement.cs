@@ -136,4 +136,20 @@ public class PlayerMovement : MoveableEntity
             _visualBeatTimer.healthContainers[i].GetComponent<Animator>().SetBool(HealthBool, health >= (i+1));
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Trigger enter");
+        string tag = collision.gameObject.tag;
+
+        if (tag == "Enemy")
+        {
+            TakeDamage(1);
+        }
+        else if (tag == "Health")
+        {
+            GetHealth(1);
+            Destroy(collision.gameObject);
+        }
+    }
 }

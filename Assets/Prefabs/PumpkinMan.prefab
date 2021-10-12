@@ -194,6 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8156810670565717771}
   - component: {fileID: 1755099956185277539}
+  - component: {fileID: 3320710331493289913}
   m_Layer: 0
   m_Name: PumpkinMan
   m_TagString: Enemy
@@ -230,6 +231,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.4
+  health: 1
   beatsUntilMove: 8
   _animator: {fileID: 4928539947333966308}
   pumpkinBombPrefab: {fileID: 5407742686685964253, guid: 519b4761734126d409f1bd0844a81090, type: 3}
+--- !u!61 &3320710331493289913
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156810670565717768}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0

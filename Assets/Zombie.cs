@@ -16,31 +16,6 @@ public class Zombie : EnemyBase
             _animator.SetTrigger(AnimChangeTrigger);
     }
 
-    public override IEnumerator MoveToPos(Vector2Int pos)
-    {
-        Vector3 startPos = transform.position;
-        float t = 0f;
-
-        while (t < 1f)
-        {
-            transform.position = Vector2.Lerp(startPos, pos, t);
-            yield return 0;
-            t += (Time.deltaTime / moveSpeed);
-        }
-
-        transform.position = (Vector2)pos;
-        CheckDamagePlayer();
-        yield return null;
-    }
-
-    private void CheckDamagePlayer()
-    {
-        if ((EntityManager.instance.GetPlayerPos() - (Vector2)transform.position).magnitude <= 0.5f)
-        {
-            EntityManager.instance.DamagePlayer(1);
-        }
-    }
-
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
