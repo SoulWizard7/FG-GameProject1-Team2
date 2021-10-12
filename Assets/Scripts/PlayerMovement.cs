@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerMovement : MoveableEntity
 {
@@ -11,6 +14,7 @@ public class PlayerMovement : MoveableEntity
     private VisualBeatTimer _visualBeatTimer;
 
     public GameObject lazerPrefab;
+    public GameObject aim;
 
     private int _healthIntAnimator = 0;
     
@@ -48,6 +52,7 @@ public class PlayerMovement : MoveableEntity
                 {
                     Move(inputMovement, true);
                     BeatEvents.instance.SuccesfulInput(health);
+                    AimCrosshair(inputMovement);
                 }
                 else
                 {
@@ -70,6 +75,14 @@ public class PlayerMovement : MoveableEntity
                 Debug.Log("Input FIRE! was NOT on beat!");
             }
         }
+    }
+
+    void AimCrosshair(Vector2Int aimDir)
+    {
+        aim.transform.position = transform.position + new Vector3(aimDir.x, aimDir.y, transform.position.z);
+
+        aim.transform.rotation =
+            Quaternion.LookRotation(Vector3.forward, new Vector3(aimDir.x, aimDir.y, transform.position.z));
     }
 
     void ShootLazer()
