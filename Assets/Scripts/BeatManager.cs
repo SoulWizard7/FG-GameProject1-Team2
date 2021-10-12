@@ -28,6 +28,9 @@ public class BeatManager : MonoBehaviour
 
 
     [NonSerialized]public AudioSource song;
+    public GameObject winTab;
+    [NonSerialized] public bool hasWon;
+    
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class BeatManager : MonoBehaviour
         Debug.Log("bps = " + _bps);
         
         song = GetComponent<AudioSource>();
+        
     }
 
     private void Update()
@@ -57,6 +61,12 @@ public class BeatManager : MonoBehaviour
         if (_countdown) return;
         
         BeatWithInputOffset();
+
+        /*
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            song.Stop();
+        }*/
     }
 
     void CountDown()
@@ -98,6 +108,13 @@ public class BeatManager : MonoBehaviour
             }
             BeatEvents.instance.BeatTrigEnvironment(currentBeat);
             BeatEvents.instance.BeatTrig(currentBeat);
+
+            if (!song.isPlaying)
+            {
+                hasWon = true;
+                winTab.SetActive(true);
+                Win();
+            }
         }
     }
 
@@ -111,6 +128,11 @@ public class BeatManager : MonoBehaviour
         {
             playerCanInput = false;
         }
+    }
+
+    void Win()
+    {
+        GameObject.Find("EntityManager").GetComponent<EntityManager>().KillAllEnemies();
     }
 
     float GetBPS()

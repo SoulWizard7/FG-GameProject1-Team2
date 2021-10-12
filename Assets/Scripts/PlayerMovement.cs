@@ -33,6 +33,8 @@ public class PlayerMovement : MoveableEntity
 
     private void Update()
     {
+        if (_beatManager.hasWon) return;
+        
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
             if (isDead) return;
@@ -84,7 +86,10 @@ public class PlayerMovement : MoveableEntity
         for (int i = 0; i < _healthIntAnimator; i++)
         {
             _visualBeatTimer.healthContainers[i].GetComponent<Animator>().SetBool(HealthBool, true);
+            
             if (_healthIntAnimator >= 3) _healthIntAnimator = 3;
+            
+            //_visualBeatTimer.healthContainers[i + 1].GetComponent<Animator>().SetBool(HealthBool, false); // get Health
         }
 
         if (health <= 0)

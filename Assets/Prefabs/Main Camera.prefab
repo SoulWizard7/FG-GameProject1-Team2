@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0be50c003d8494ea6f19ddc2362452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothDamp: 0.429
+  smoothDamp: 0.436
 --- !u!114 &4275770375890712386
 MonoBehaviour:
   m_ObjectHideFlags: 0

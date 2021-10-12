@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VisualIndicator : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class VisualIndicator : MonoBehaviour
         if (_onBeat)
         {
             //GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.ringColors[0];
-            GetComponent<SpriteRenderer>().color = _visualBeatTimer.ringColors[0]; //remove once we got the right sprites
+            GetComponent<Image>().color = _visualBeatTimer.ringColors[0]; //remove once we got the right sprites
             _success = true;
         }
     }
@@ -39,6 +40,7 @@ public class VisualIndicator : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Finish"))
         {
+            Debug.Log("TRIGGER!");
             _onBeat = true;
         }
     }
@@ -51,7 +53,7 @@ public class VisualIndicator : MonoBehaviour
             if (!_success)
             {
                 //GetComponent<SpriteRenderer>().sprite = _visualBeatTimer.indicatorSprites[2];
-                GetComponent<SpriteRenderer>().color = _visualBeatTimer.ringColors[1]; //remove once we got the right sprites
+                GetComponent<Image>().color = _visualBeatTimer.ringColors[1]; //remove once we got the right sprites
             }
         }
     }

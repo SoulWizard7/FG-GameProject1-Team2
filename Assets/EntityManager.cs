@@ -86,4 +86,13 @@ public class EntityManager : MonoBehaviour
     {
         player.TakeDamage(damage);
     }
+
+    public void KillAllEnemies()
+    {
+        foreach (EnemyBase enemy in enemies)
+        {
+            BeatEvents.instance.beatTrigger -= OnBeat;
+            enemy.TakeDamage(1);
+        }
+    }
 }
