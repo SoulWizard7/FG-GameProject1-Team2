@@ -22,10 +22,15 @@ public class PlayerMovement : MoveableEntity
     public List<AudioClip> soundEffects;
 
     bool isDead = false;
+
+    private Animator _animator;
     private static readonly int HealthBool = Animator.StringToHash("healthBool");
+    private static readonly int PlayerDeath = Animator.StringToHash("PlayerDeath");
+    private static readonly int PlayerWin = Animator.StringToHash("PlayerWin");
 
     private void Awake()
     {
+        _animator = GetComponentInChildren<Animator>();
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -37,7 +42,11 @@ public class PlayerMovement : MoveableEntity
 
     private void Update()
     {
-        if (_beatManager.hasWon) return;
+        if (_beatManager.hasWon)
+        {
+            _animator.SetBool(PlayerWin, true);
+            return;
+        }
         
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
@@ -94,15 +103,11 @@ public class PlayerMovement : MoveableEntity
     public override void TakeDamage(int damage)
     {
         health -= damage;
-        _healthIntAnimator++;
+        //_healthIntAnimator++;
         
-        for (int i = 0; i < _healthIntAnimator; i++)
+        for (int i = 0; i < _visualBeatTimer.healthContainers.Count; i++)
         {
-            _visualBeatTimer.healthContainers[i].GetComponent<Animator>().SetBool(HealthBool, true);
-            
-            if (_healthIntAnimator >= 3) _healthIntAnimator = 3;
-            
-            //_visualBeatTimer.healthContainers[i + 1].GetComponent<Animator>().SetBool(HealthBool, false); // get Health
+            _visualBeatTimer.healthContainers[i].GetComponent<Animator>().SetBool(HealthBool, health >= (i+1));
         }
 
         if (health <= 0)
@@ -111,12 +116,24 @@ public class PlayerMovement : MoveableEntity
             {
                 _visualBeatTimer.deathTab.SetActive(true);
                 isDead = true;
+                _animator.SetBool(PlayerDeath, true);
                 _audioSource.PlayOneShot(soundEffects[2]);
+                GameObject.Find("EntityManager").GetComponent<EntityManager>().AllEnemiesStopMoving();
             }
             return;
         }
-        
         _audioSource.PlayOneShot(soundEffects[Random.Range(0, 2)]);
+    }
+
+    public void GetHealth(int hp)
+    {
+        if (health == 3) return;
+
+        health += hp;
         
+        for (int i = 0; i < _visualBeatTimer.healthContainers.Count; i++)
+        {
+            _visualBeatTimer.healthContainers[i].GetComponent<Animator>().SetBool(HealthBool, health >= (i+1));
+        }
     }
 }

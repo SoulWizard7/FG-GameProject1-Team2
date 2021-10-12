@@ -13,6 +13,8 @@ public class EntityManager : MonoBehaviour
     public GameObject playerPrefab;
     public Vector2Int playerStartPosition = new Vector2Int(4, 4);
 
+    public GameObject healthPickupPrefab;
+
     public GameObject zombiePrefab;
     public GameObject pumpkinManPrefab;
 
@@ -75,6 +77,14 @@ public class EntityManager : MonoBehaviour
         {
             SpawnEnemy(pumpkinManPrefab);
         }
+        else if (beatCount % 111 == 0)
+        {
+            int x = Random.Range(-4, 5);
+            int y = Random.Range(-4, 5);
+            HealthPickup hp = Instantiate(healthPickupPrefab, new Vector2(playerStartPosition.x + x, playerStartPosition.y + y),
+                Quaternion.identity).GetComponent<HealthPickup>();
+            hp.player = player;
+        }
     }
 
     public Vector2Int GetPlayerPos()
@@ -93,6 +103,15 @@ public class EntityManager : MonoBehaviour
         {
             BeatEvents.instance.beatTrigger -= OnBeat;
             enemy.TakeDamage(1);
+        }
+    }
+
+    public void AllEnemiesStopMoving()
+    {
+        foreach (EnemyBase enemy in enemies)
+        {
+            BeatEvents.instance.beatTrigger -= OnBeat;
+            enemy.beatsUntilMove = 1000;
         }
     }
 }

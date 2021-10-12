@@ -40,7 +40,6 @@ public class VisualIndicator : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Finish"))
         {
-            Debug.Log("TRIGGER!");
             _onBeat = true;
         }
     }

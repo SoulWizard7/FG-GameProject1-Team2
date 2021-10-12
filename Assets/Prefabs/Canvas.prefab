@@ -539,9 +539,9 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   indicatorPrefab: {fileID: 8262410243844641862, guid: 97471fe16aca71c418d6c68056f517b4, type: 3}
   healthContainers:
-  - {fileID: 6295984014055862256}
-  - {fileID: 6295984014261759189}
   - {fileID: 6295984014051182522}
+  - {fileID: 6295984014261759189}
+  - {fileID: 6295984014055862256}
   deathTab: {fileID: 6295984012735808386}
 --- !u!61 &6295984012684479358
 BoxCollider2D:
