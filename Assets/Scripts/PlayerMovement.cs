@@ -15,8 +15,6 @@ public class PlayerMovement : MoveableEntity
 
     public GameObject lazerPrefab;
     public GameObject aim;
-
-    private int _healthIntAnimator = 0;
     
     private AudioSource _audioSource;
     public List<AudioClip> soundEffects;
@@ -27,6 +25,11 @@ public class PlayerMovement : MoveableEntity
     private static readonly int HealthBool = Animator.StringToHash("healthBool");
     private static readonly int PlayerDeath = Animator.StringToHash("PlayerDeath");
     private static readonly int PlayerWin = Animator.StringToHash("PlayerWin");
+    private static readonly int SpamBool = Animator.StringToHash("SpamBool");
+
+    public int _spamInputs = -1;
+    public float spamPenaltyTime = 1f;
+    private bool _didSpam = false;
 
     private void Awake()
     {
@@ -47,6 +50,21 @@ public class PlayerMovement : MoveableEntity
             _animator.SetBool(PlayerWin, true);
             return;
         }
+
+        if (_didSpam)
+        {
+            return;
+        }
+
+        if (!_beatManager._playerCanInput)
+        {
+            if (Input.anyKeyDown) _spamInputs++;
+            if (_spamInputs >= 2)
+            {
+                Debug.Log("SPAM!");
+                StartCoroutine(SpamDance());
+            }
+        }
         
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
@@ -57,7 +75,7 @@ public class PlayerMovement : MoveableEntity
             if (inputMovement.magnitude > 0)
             {
                 // Player moved
-                if (_beatManager.playerCanInput)
+                if (_beatManager._playerCanInput)
                 {
                     Move(inputMovement, true);
                     BeatEvents.instance.SuccesfulInput(health);
@@ -72,7 +90,7 @@ public class PlayerMovement : MoveableEntity
 
         if (Input.GetButtonDown("Fire1") && !isDead)
         {
-            if (_beatManager.playerCanInput)
+            if (_beatManager._playerCanInput)
             {
                 Debug.Log("Input FIRE! was on beat!");
                 ShootLazer();
@@ -84,6 +102,15 @@ public class PlayerMovement : MoveableEntity
                 Debug.Log("Input FIRE! was NOT on beat!");
             }
         }
+    }
+
+    IEnumerator SpamDance()
+    {
+        _didSpam = true;
+        _animator.SetBool(SpamBool, true);
+        yield return new WaitForSeconds(spamPenaltyTime);
+        _animator.SetBool(SpamBool, false);
+        _didSpam = false;
     }
 
     void AimCrosshair(Vector2Int aimDir)

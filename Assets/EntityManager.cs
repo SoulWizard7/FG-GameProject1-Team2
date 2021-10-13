@@ -37,6 +37,7 @@ public class EntityManager : MonoBehaviour
         player = Instantiate(playerPrefab, new Vector2(playerStartPosition.x, playerStartPosition.y), Quaternion.identity).GetComponent<PlayerMovement>();
         CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
         cameraFollow.player = player.transform;
+        GameObject.Find("BeatManager").GetComponent<BeatManager>()._playerMovement = player;
     }
 
     private void SpawnEnemy(GameObject enemyPrefab)
@@ -77,7 +78,7 @@ public class EntityManager : MonoBehaviour
         {
             SpawnEnemy(pumpkinManPrefab);
         }
-        else if (beatCount % 18 == 0)
+        else if (beatCount % 111 == 0)
         {
             int x = Random.Range(-4, 5);
             int y = Random.Range(-4, 5);

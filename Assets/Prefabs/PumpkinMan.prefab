@@ -233,6 +233,7 @@ MonoBehaviour:
   moveSpeed: 0.4
   health: 1
   beatsUntilMove: 8
+  enemyDeathParticlePrefab: {fileID: 4656771533370906194, guid: cc606e3c4d1c0d04ea7d2e2e62902d53, type: 3}
   _animator: {fileID: 4928539947333966308}
   pumpkinBombPrefab: {fileID: 5407742686685964253, guid: 519b4761734126d409f1bd0844a81090, type: 3}
 --- !u!61 &3320710331493289913

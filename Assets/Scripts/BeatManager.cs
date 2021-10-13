@@ -17,7 +17,8 @@ public class BeatManager : MonoBehaviour
     
     public bool startTheBeat = false;
     private bool _playSong = false;
-    public bool playerCanInput;
+    [NonSerialized]public bool _playerCanInput;
+    [NonSerialized]public PlayerMovement _playerMovement;
 
     // COUNTDOWN VARIABLES AND REFERENCES 
     private bool _countdown = true;
@@ -38,7 +39,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log("bps = " + _bps);
         
         song = GetComponent<AudioSource>();
-        
     }
 
     private void Update()
@@ -77,6 +77,7 @@ public class BeatManager : MonoBehaviour
         if (countdownBeat == 0)
         {
             countdownText.SetText("GO!");
+            _countdown = false;
         }
         else if (countdownBeat <= -1)
         {
@@ -106,6 +107,13 @@ public class BeatManager : MonoBehaviour
                 CountDown();
                 return;
             }
+            
+            if (currentBeat > 1)
+            {
+                countdownText.SetText("");
+                _countdown = false;
+            }
+            
             BeatEvents.instance.BeatTrigEnvironment(currentBeat);
             BeatEvents.instance.BeatTrig(currentBeat);
 
@@ -122,11 +130,12 @@ public class BeatManager : MonoBehaviour
     {
         if (_beatTime > currentBeat - offsetMilliSeconds || _beatTime < (currentBeat - 1 + offsetMilliSeconds))
         {
-            playerCanInput = true;
+            _playerMovement._spamInputs = 0;
+            _playerCanInput = true;
         }
         else
         {
-            playerCanInput = false;
+            _playerCanInput = false;
         }
     }
 

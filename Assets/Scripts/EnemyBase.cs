@@ -11,6 +11,8 @@ public class EnemyBase : MoveableEntity
     // firstBeat is to allow enemies to offset the beat count to when they were spawned so they stay in the same part of the animation cycle
     protected int firstBeat = -1;
 
+    public GameObject enemyDeathParticlePrefab;
+
     [SerializeField] protected Animator _animator;
 
     void Start()
@@ -45,6 +47,9 @@ public class EnemyBase : MoveableEntity
         {
             BeatEvents.instance.beatTrigger -= OnBeat;
             EntityManager.instance.enemies.Remove(this);
+
+            GameObject particles = Instantiate(enemyDeathParticlePrefab, transform.position, Quaternion.identity);
+            Destroy(particles, 2f);
             
             //_audioEffects.PlayZombieDeath();
 
