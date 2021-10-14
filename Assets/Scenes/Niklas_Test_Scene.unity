@@ -212,14 +212,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 666293663684167236, guid: e766f475d7d34e04494d5c62c1f2e4d9, type: 3}
-      propertyPath: zombiePrefab
-      value: 
-      objectReference: {fileID: 8156810670565717768, guid: 97b978d056cb10240a14e2f22ea341dc, type: 3}
-    - target: {fileID: 666293663684167236, guid: e766f475d7d34e04494d5c62c1f2e4d9, type: 3}
-      propertyPath: enemySpawnOffset
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 666293663684167237, guid: e766f475d7d34e04494d5c62c1f2e4d9, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -669,18 +661,6 @@ PrefabInstance:
     - target: {fileID: 4189639580296258018, guid: 1cabe1e25c5bc604d817bfd9cf455778, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8889188532443525741, guid: 1cabe1e25c5bc604d817bfd9cf455778, type: 3}
-      propertyPath: soundEffects.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8889188532443525741, guid: 1cabe1e25c5bc604d817bfd9cf455778, type: 3}
-      propertyPath: soundEffects.Array.data[5]
-      value: 
-      objectReference: {fileID: 8300000, guid: e6c5246bbc2aeef4e9179c468d78318c, type: 3}
-    - target: {fileID: 8889188532443525741, guid: 1cabe1e25c5bc604d817bfd9cf455778, type: 3}
-      propertyPath: soundEffects.Array.data[6]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cabe1e25c5bc604d817bfd9cf455778, type: 3}

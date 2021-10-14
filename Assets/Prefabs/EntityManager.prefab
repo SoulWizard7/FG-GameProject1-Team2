@@ -50,3 +50,4 @@ MonoBehaviour:
   zombiePrefab: {fileID: 8156810670565717768, guid: 97b978d056cb10240a14e2f22ea341dc, type: 3}
   pumpkinManPrefab: {fileID: 8156810670565717768, guid: 41317794662173e4c942df6b4f2ba176, type: 3}
   enemySpawnOffset: 3
+  beatsBetweenHealthpickupSpawn: 80

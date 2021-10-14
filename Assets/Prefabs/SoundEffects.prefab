@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - {fileID: 8300000, guid: 88f872cec3e210e46a8f6d664d2d3c7a, type: 3}
-  - {fileID: 8300000, guid: 7e0ece73f3b955d45bb502ce31709b34, type: 3}
-  - {fileID: 8300000, guid: 145c349b4de29df44b29ad4ce8098431, type: 3}
-  - {fileID: 8300000, guid: bf9fbcfc5f18add4d99de5e8b7b7b97e, type: 3}
-  - {fileID: 8300000, guid: 5e8b9117440445f4d851d0961e504875, type: 3}
+  - {fileID: 8300000, guid: 96c901d105ef83648bffd679c4df2ffb, type: 3}
+  - {fileID: 8300000, guid: 549fdfdb279d27745b7d0c7fe628da3b, type: 3}
+  - {fileID: 8300000, guid: 99dcb47e71ce90d4fab2c5ce1a0c91f5, type: 3}
+  - {fileID: 8300000, guid: f31b2a1209aff1b4e858d0485fa1e800, type: 3}
+  - {fileID: 8300000, guid: 304dda51b0ff0ae4fac69f4db7abc350, type: 3}
+  - {fileID: 8300000, guid: e42136125519c3644b3c2205a8f15436, type: 3}
 --- !u!82 &1137066284577746281
 AudioSource:
   m_ObjectHideFlags: 0

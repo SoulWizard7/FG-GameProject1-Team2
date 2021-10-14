@@ -21,6 +21,8 @@ public class EntityManager : MonoBehaviour
     // Number of tiles away from dance floor enemies spawn.
     public int enemySpawnOffset = 3;
 
+    public int beatsBetweenHealthpickupSpawn = 80;
+    
     void Awake()
     {
         instance = this;
@@ -78,7 +80,8 @@ public class EntityManager : MonoBehaviour
         {
             SpawnEnemy(pumpkinManPrefab);
         }
-        else if (beatCount % 111 == 0)
+        
+        if (beatCount % beatsBetweenHealthpickupSpawn == 0)
         {
             int x = Random.Range(-4, 5);
             int y = Random.Range(-4, 5);

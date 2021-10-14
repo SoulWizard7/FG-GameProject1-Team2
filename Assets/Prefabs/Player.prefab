@@ -319,11 +319,14 @@ MonoBehaviour:
   health: 3
   lazerPrefab: {fileID: 5407742686685964253, guid: e5d6ff1257d306e439e4fdedd9401206, type: 3}
   aim: {fileID: 6604558630710852316}
-  soundEffects:
-  - {fileID: 8300000, guid: 04d89dd4d2694184abc60ce8c0a77583, type: 3}
-  - {fileID: 8300000, guid: a47820698e0ca8a4d81687f61e706242, type: 3}
-  - {fileID: 8300000, guid: 57232d027994cf14282cdd2186cf908d, type: 3}
-  - {fileID: 8300000, guid: e5dbd9809b5613c4eb90244ca5048fd7, type: 3}
+  playerSoundEffects:
+  - {fileID: 8300000, guid: bb22e5031296e1040930ae2e2dd2cf86, type: 3}
+  - {fileID: 8300000, guid: 40c0be0ca3689464096871d19f05d119, type: 3}
+  - {fileID: 8300000, guid: a3e90a5e3171b53489971304bd6937b6, type: 3}
+  - {fileID: 8300000, guid: 7b6dacbac2168784d8ffb9e5adf5a2a4, type: 3}
+  - {fileID: 8300000, guid: 5cee5c838e5968742b2c63fac25e4aeb, type: 3}
+  _spamInputs: -1
+  spamPenaltyTime: 1
 --- !u!82 &-2121513464704204039
 AudioSource:
   m_ObjectHideFlags: 0
@@ -336,7 +339,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.676
   m_Pitch: 1
   Loop: 0
   Mute: 0

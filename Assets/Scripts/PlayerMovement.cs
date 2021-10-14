@@ -17,7 +17,7 @@ public class PlayerMovement : MoveableEntity
     public GameObject aim;
     
     private AudioSource _audioSource;
-    public List<AudioClip> soundEffects;
+    public List<AudioClip> playerSoundEffects;
 
     bool isDead = false;
 
@@ -95,7 +95,7 @@ public class PlayerMovement : MoveableEntity
                 Debug.Log("Input FIRE! was on beat!");
                 ShootLazer();
                 BeatEvents.instance.SuccesfulInput(health);
-                _audioSource.PlayOneShot(soundEffects[3]);
+                _audioSource.PlayOneShot(playerSoundEffects[3]);
             }
             else
             {
@@ -144,16 +144,17 @@ public class PlayerMovement : MoveableEntity
                 _visualBeatTimer.deathTab.SetActive(true);
                 isDead = true;
                 _animator.SetBool(PlayerDeath, true);
-                _audioSource.PlayOneShot(soundEffects[2]);
+                _audioSource.PlayOneShot(playerSoundEffects[2]);
                 GameObject.Find("EntityManager").GetComponent<EntityManager>().AllEnemiesStopMoving();
             }
             return;
         }
-        _audioSource.PlayOneShot(soundEffects[Random.Range(0, 2)]);
+        _audioSource.PlayOneShot(playerSoundEffects[Random.Range(0, 2)]);
     }
 
     public void GetHealth(int hp)
     {
+        _audioSource.PlayOneShot(playerSoundEffects[4]);
         if (health == 3) return;
 
         health += hp;
