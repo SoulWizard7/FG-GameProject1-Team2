@@ -433,34 +433,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 841494451, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 841494451, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 330
-      objectReference: {fileID: 0}
-    - target: {fileID: 1612083377390015609, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 1612083377390015609, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 330
-      objectReference: {fileID: 0}
-    - target: {fileID: 1964741980614408850, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
-      propertyPath: m_Name
-      value: Gradient2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2495341074855596597, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881368285930026611, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3881368286912172633, guid: 8735be97ce1ff5a43b3d72642b1fb93f, type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
