@@ -2400,6 +2400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeatManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7215621353436972918, guid: b8161ed0add96734b94246aaa0d14878, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7215621353436972919, guid: b8161ed0add96734b94246aaa0d14878, type: 3}
       propertyPath: m_RootOrder
       value: 2
