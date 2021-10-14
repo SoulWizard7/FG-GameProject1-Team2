@@ -176,8 +176,11 @@ public class PlayerMovement : MoveableEntity
         }
         else if (tag == "Health")
         {
-            GetHealth(1);
-            Destroy(collision.gameObject);
+            if (health != 3)
+            {
+                GetHealth(1);
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

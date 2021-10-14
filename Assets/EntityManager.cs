@@ -101,9 +101,11 @@ public class EntityManager : MonoBehaviour
 
     public void KillAllEnemies()
     {
+        BeatEvents.instance.beatTrigger -= OnBeat;
+        
         foreach (EnemyBase enemy in enemies)
         {
-            BeatEvents.instance.beatTrigger -= OnBeat;
+            enemy.StopAllCoroutines();
             enemy.TakeDamage(1);
         }
     }

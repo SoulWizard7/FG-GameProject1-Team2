@@ -26,6 +26,8 @@ public class VisualBeatTimer : MonoBehaviour
 
     void OnBeat(int beatCount)
     {
+        if(_bm.hasWon) return;
+        
         _animator.SetTrigger(BeatTrig);
         
         if (beatCount < 2) return;
