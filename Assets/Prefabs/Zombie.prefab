@@ -234,7 +234,7 @@ MonoBehaviour:
   moveSpeed: 0.6
   health: 1
   beatsUntilMove: 3
-  enemyDeathParticlePrefab: {fileID: 4656771533370906194, guid: cc606e3c4d1c0d04ea7d2e2e62902d53, type: 3}
+  enemyDeathParticlePrefab: {fileID: 3221016218894450967, guid: 771d29d15d390474abbbbe8d070c2d1e, type: 3}
   _animator: {fileID: 5933300061767440807}
 --- !u!82 &1063081854492864262
 AudioSource:
